@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<!-- 树的遍历 -->
+<body>
+  <div id="app">
+    <div>哈喽</div>
+    <p>开课吧</p>
+    <div>
+      <span>123</span>
+      <button>xx</button>
+    </div>
+    <ul>
+      <li>123</li>
+    </ul>
+  </div>
+  <script>
+    function walk(node,func=()=>{}){
+      if(node instanceof window.Node){
+        _walk(node, func)
+      }
+      return node
+    }
+    function _walk(node, func){
+        func(node)
+        // 需要递归的
+        // 获取第一个子元素
+        node = node.firstChild
+        // 只要子元素存在
+        while(node){
+          // 对这个子元素 递归遍历
+          _walk(node,func)
+          // 遍历结束，开始遍历他的兄弟节点
+          node = node.nextSibling
+        }
+    }
+
+
+    walk(document.getElementById('app'), node=>{
+      console.log(node)
+    })
+
+
+    // {
+    //   type:"div",
+    //   props:{
+    //     children:[]
+    //   }
+    // }
+
+    // 根据props.children来遍历
+  </script>
+</body>
+</html>
